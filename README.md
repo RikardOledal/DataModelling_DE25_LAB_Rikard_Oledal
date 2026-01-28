@@ -55,30 +55,18 @@ I den konceptuella modellen så tänkte jag att alla elever går i en Klass. Kla
 
 <img src="./yh_labb/models/YrkesCo_Conceptual_4.png" alt="Conceptual Modell" width="600">
 
-[Relationship statements](./yh_labb/models/statments.md)
-<img src="./img/Sakila_staging.png" alt="ERD-Chart Staging" width="600">
+
+## Logisk Modell
+I den logiska modellen skapade jag fler entiteter för att man ska kunna sätta restriktioner på entiteter som har känsliga uppgifter så som lön eller personnummer. Efter som den Logiska Modellen inte ska ha Many2Many-relation mellan entiteterna så blev det också en del bryggor för att hantera detta. För att uppnå 3NF bröt jag även ut City ur Address-entiteten för att säkerställa att vi att varje icke-nyckel-attribut i Address-tabellen beror på nothing but the key. Därmed har jag tagit bort det transitiva beroendet mellan adress-id och stadens namn.
+
+<img src="./yh_labb/models/YrkesCo_Logical_3.png.png" alt="Logical Modell" width="600">
 
 
-## Sakila refined
-I discovered that there would be many joins in each query if I were to use the structure that was in schema staging, so I created a refined schema with these tables.
+## Fysisk Modell
+I den fysiska modellen har jag med alla Entiteter med Attribut och Datatyper. För alla id så använde jag SERIAL som gör att man inte behöver fylla i den kolumnen utan det tar databasen hand om. Jag använde RegEx i kombination med VARCHAR för bestämma där det skulle vara en viss längd på siffror. Jag gjorde även Table-check på t.ex. Utbildare för att se till att den bara kunde vara antingen Konsult eller Fast anställd, men inte både och.
 
-<img src="./img/Sakila_refined.png" alt="ERD-Chart Refined" width="600">
+<img src="./yh_labb/models/YrkesCo_PMD_4.png" alt="Psysical Modell" width="600">
 
-
-## Data Loading Tool (DLT)
-My DLT checks if there is already a DuckDB database in the data folder. If there is, DLT will not create the database. Then the DLT will run refined.sql were my refined schema and tables are added. All tables are idempotent so they will not replace if the tables already exist.
-After this, DLT will copy the database to evidence. This allows you to add data to the database manually which will then end up in Evidence.
-
-<img src="./img/Pipeline.png" alt="Pipeline" width="600">
-
-
-## Evidence
-I used the data from the manager report to design the dashboard in Evidence. But in Evidence I made the objects more selectable. For example, I didn't just bring up all the titles with LOVE in them, I made a movie search where you could search for any word you wanted.
-
-## Help
-I have coded everything myself, but I have a study group with Anja Scherwall and Felix Kjellberg. I have discussed a lot with them when needed. We have also helped each other with tips and logic.
-I used ChatGPT and Google Gemini in troubleshooting when I didn't see the error myself. When I made the dashboard in Evidence, I looked a lot at [Evidence Docs][2].
-
-[1]: https://www.kaggle.com/datasets/atanaskanev/sqlite-sakila-sample-database
-[2]: https://docs.evidence.dev/
-
+## Hjälp
+Jag har en studiegrupp med Anja Scherwall och Felix Kjellberg. Vi har diskuterat många av modellerna för att se om de håller och få nya idéer.
+Jag har även bollat med Google Gemini vid behov.
