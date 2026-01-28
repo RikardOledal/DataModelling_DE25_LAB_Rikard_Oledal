@@ -1,13 +1,12 @@
 # Lab - Data Modelling
 
-Uppgiften 
+Uppgiften i denna lab var att skapa modeller för en databas för Yrkeshögskolans YrkesCo. Det ska ingå en Konceptuell, en Logisk och en Fysisk modell. Efter det ska jag skapa databasen och visa att den fungerar. Modellen ska vara 3NF.
 
-I would answer questions from The Manager and insert these into a Manager report in an ipynb file. Then I would also create a Dashboard in Evidence. For more information about the task follow the link below.
+Jag skulle även spela in en video pitch där jag förklarar modellerna och ordna en pdf som förklarar modellerna. För mer info om labben se nedan PDF.
 
 [Lab_instruktioner (PDF)](./img/lab_yrkesco.pdf)
-[Relationship statements](./yh_labb/models/statments.md)
 
-.\yh_labb\models\statments.md
+
 ## Video
 
 <a href="https://www.youtube.com/watch?v=sb5SrouAKeg">
@@ -51,9 +50,12 @@ I would answer questions from The Manager and insert these into a Manager report
     psql -U postgres -d yrkco_db
     ```
 
-## Sakila DB
-Sakila is a database with data about films, how many of each film there are (inventory), how much these have been rented and how much has been paid for this. There is also information about customers who rent and staff who work there.
+## Konceptuell Modell
+I den konceptuella modellen så tänkte jag att alla elever går i en Klass. Klasser är knuten till ett Program eller en Fristående Kurs som är knuten till en skola. I Program och Fristående kurser finns kurser. Utbildare är knutna till Kurserna och Utbildare kan vara personal eller konsulter. Se denna länk för mer [Relationship statements](./yh_labb/models/statments.md)
 
+<img src="./yh_labb/models/YrkesCo_Conceptual_4.png" alt="Conceptual Modell" width="600">
+
+[Relationship statements](./yh_labb/models/statments.md)
 <img src="./img/Sakila_staging.png" alt="ERD-Chart Staging" width="600">
 
 
