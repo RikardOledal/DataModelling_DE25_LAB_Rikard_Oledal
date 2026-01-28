@@ -59,7 +59,7 @@ I den konceptuella modellen så tänkte jag att alla elever går i en Klass. Kla
 ## Logisk Modell
 I den logiska modellen skapade jag fler entiteter för att man ska kunna sätta restriktioner på entiteter som har känsliga uppgifter så som lön eller personnummer. Efter som den Logiska Modellen inte ska ha Many2Many-relation mellan entiteterna så blev det också en del bryggor för att hantera detta. För att uppnå 3NF bröt jag även ut City ur Address-entiteten för att säkerställa att vi att varje icke-nyckel-attribut i Address-tabellen beror på nothing but the key. Därmed har jag tagit bort det transitiva beroendet mellan adress-id och stadens namn.
 
-<img src="./yh_labb/models/YrkesCo_Logical_3.png.png" alt="Logical Modell" width="600">
+<img src="./yh_labb/models/YrkesCo_Logical_3.png" alt="Logical Modell" width="600">
 
 
 ## Fysisk Modell
