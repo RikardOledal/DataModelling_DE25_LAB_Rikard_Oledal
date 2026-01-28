@@ -5,7 +5,7 @@ Uppgiften
 I would answer questions from The Manager and insert these into a Manager report in an ipynb file. Then I would also create a Dashboard in Evidence. For more information about the task follow the link below.
 
 [Lab_instruktioner (PDF)](./img/lab_yrkesco.pdf)
-[Relationship statements](.\yh_labb\models\statments.md)
+[Relationship statements](./yh_labb/models/statments.md)
 
 .\yh_labb\models\statments.md
 ## Video
