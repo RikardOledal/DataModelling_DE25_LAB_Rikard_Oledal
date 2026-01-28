@@ -13,6 +13,8 @@ Jag skulle även spela in en video pitch där jag förklarar modellerna och ordn
   <img src="./img/Thumbnail.png" alt="Video presentation" width="600">
 </a>
 
+[PDF till videon](./img/YrkesCoPDF.pdf)
+
 
 ## Installation
 1. Klona repro
