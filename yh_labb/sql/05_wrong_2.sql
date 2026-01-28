@@ -1,3 +1,4 @@
+-- To zip code with letters
 INSERT INTO
     "Address" (address, zip_code, city_id)
 VALUES
