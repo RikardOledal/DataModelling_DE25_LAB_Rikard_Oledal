@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "Student" (
-  "student_id" integer PRIMARY KEY,
+  "student_id" SERIAL PRIMARY KEY,
   "class_id" integer NOT NULL,
   "first_name" varchar(50) NOT NULL,
   "last_name" varchar(50) NOT NULL,
@@ -9,26 +9,27 @@ CREATE TABLE IF NOT EXISTS "Student" (
 );
 
 CREATE TABLE IF NOT EXISTS "StudentInfo" (
-  "student_info_id" integer PRIMARY KEY,
+  "student_info_id" SERIAL PRIMARY KEY,
   "phone_nr" varchar(20),
   "social_security_nr" varchar(12) UNIQUE NOT NULL CHECK (social_security_nr ~ '^[0-9]{12}$'),
   "private_email" varchar(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS "Address" (
-  "address_id" integer PRIMARY KEY,
+  "address_id" SERIAL PRIMARY KEY,
   "address" varchar(100) NOT NULL,
   "zip_code" varchar(5) NOT NULL CHECK (zip_code ~ '^[0-9]{5}$'),
   "city_id" integer NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS "City" (
-  "city_id" integer PRIMARY KEY,
+  "city_id" SERIAL PRIMARY KEY,
   "city_name" varchar(50)
 );
 
 CREATE TABLE IF NOT EXISTS "Class" (
-  "class_id" integer PRIMARY KEY,
+  "class_id" SERIAL PRIMARY KEY,
+  "class_code" varchar(5) UNIQUE,
   "educatorlead_id" integer,
   "program_id" integer,
   "ind_course_id" integer,
@@ -37,40 +38,43 @@ CREATE TABLE IF NOT EXISTS "Class" (
 );
 
 CREATE TABLE IF NOT EXISTS "IndependentCourse" (
-  "ind_course_id" integer PRIMARY KEY,
+  "ind_course_id" SERIAL PRIMARY KEY,
+  "ind_course_code" varchar(5) UNIQUE,
   "course_id" integer,
   "name" varchar(50) NOT NULL,
   "school_id" integer NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS "Program" (
-  "program_id" integer PRIMARY KEY,
-  "program_code" varchar(5) NOT NULL,
+  "program_id" SERIAL PRIMARY KEY,
+  "program_code" varchar(5) UNIQUE,
   "name" varchar(50) NOT NULL,
   "description" varchar(255) NOT NULL,
   "school_id" integer NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS "ProgramCourse" (
-  "programcourse_id" integer PRIMARY KEY,
+  "programcourse_id" SERIAL PRIMARY KEY,
   "program_id" integer NOT NULL,
   "course_id" integer NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS "Course" (
-  "course_id" integer PRIMARY KEY,
+  "course_id" SERIAL PRIMARY KEY,
   "course_code" varchar(5) NOT NULL,
-  "name" varchar(50) NOT NULL
+  "name" varchar(50) NOT NULL,
+  "points" integer,
+  "description" varchar(255)
 );
 
 CREATE TABLE IF NOT EXISTS "CourseEducator" (
-  "courseeducator_id" integer PRIMARY KEY,
+  "courseeducator_id" SERIAL PRIMARY KEY,
   "course_id" integer,
   "educator_id" integer
 );
 
 CREATE TABLE IF NOT EXISTS "Educator" (
-  "educator_id" integer PRIMARY KEY,
+  "educator_id" SERIAL PRIMARY KEY,
   "staff_id" integer,
   "consultant_id" integer,
   CONSTRAINT "check_educator_source" CHECK (((staff_id IS NOT NULL AND consultant_id IS NULL) OR
@@ -78,18 +82,18 @@ CREATE TABLE IF NOT EXISTS "Educator" (
 );
 
 CREATE TABLE IF NOT EXISTS "EducationLeader" (
-  "educatorlead_id" integer PRIMARY KEY,
+  "educatorlead_id" SERIAL PRIMARY KEY,
   "staff_id" integer
 );
 
 CREATE TABLE IF NOT EXISTS "School" (
-  "school_id" integer PRIMARY KEY,
+  "school_id" SERIAL PRIMARY KEY,
   "name" varchar(50) NOT NULL,
   "address_id" integer NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS "Staff" (
-  "staff_id" integer PRIMARY KEY,
+  "staff_id" SERIAL PRIMARY KEY,
   "first_name" varchar(50) NOT NULL,
   "last_name" varchar(50) NOT NULL,
   "role" varchar(50) NOT NULL,
@@ -97,13 +101,13 @@ CREATE TABLE IF NOT EXISTS "Staff" (
 );
 
 CREATE TABLE IF NOT EXISTS "Salary" (
-  "salary_id" integer PRIMARY KEY,
+  "salary_id" SERIAL PRIMARY KEY,
   "staff_id" integer NOT NULL,
   "monthly_salary" Decimal(10,2) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS "Consultant" (
-  "consultant_id" integer PRIMARY KEY,
+  "consultant_id" SERIAL PRIMARY KEY,
   "consultingco_id" integer NOT NULL,
   "first_name" varchar(50) NOT NULL,
   "last_name" varchar(50) NOT NULL,
@@ -113,12 +117,12 @@ CREATE TABLE IF NOT EXISTS "Consultant" (
 );
 
 CREATE TABLE IF NOT EXISTS "Consultant_info" (
-  "consultantinfo_id" integer PRIMARY KEY,
+  "consultantinfo_id" SERIAL PRIMARY KEY,
   "hour_fee" Decimal(8,2) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS "ConsultingCo" (
-  "consultingco_id" integer PRIMARY KEY,
+  "consultingco_id" SERIAL PRIMARY KEY,
   "name" varchar(50) NOT NULL,
   "organization_number" varchar(10) UNIQUE NOT NULL CHECK (organization_number ~ '^[0-9]{10}$'),
   "f_tax" bool DEFAULT true,
